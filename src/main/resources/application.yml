@@ -36,5 +36,5 @@ pagehelper:
   params: countSql
   page-size-zero: zero
 server:
-  port: 80
+  port: 8080
 
