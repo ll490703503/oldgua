@@ -46,9 +46,7 @@ public class Usercon {
     }
 
     @GetMapping(value = "login")
-
     public String login(){
-
         return "hahah";
     }
 
