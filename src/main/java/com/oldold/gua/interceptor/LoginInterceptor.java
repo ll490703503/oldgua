@@ -22,6 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (session.getAttribute("user") == null) {
             if ("XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
                 response.sendError(401);
+                System.out.println("hahha");
             }
             response.sendRedirect("/");
             return false;
@@ -31,11 +32,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-    }
-
-//    @Override
-//    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
 
     }
