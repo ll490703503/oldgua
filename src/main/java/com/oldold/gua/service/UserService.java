@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @Service
 public class UserService {
+
     @Autowired
     UserMapper userMapper;
 
@@ -39,13 +40,13 @@ public class UserService {
 
 
 
-    public PageInfo<com.oldold.gua.domain.User> getAll(int page,int pagesize) {
+    public PageInfo<User> getAll(int page,int pagesize) {
 
         PageHelper.startPage(page,pagesize);
 
-        List<com.oldold.gua.domain.User> list = userMapper.getAll();
+        List<User> list = userMapper.getAll();
 
-        PageInfo<com.oldold.gua.domain.User> userPageInfo = new PageInfo<com.oldold.gua.domain.User>(list);
+        PageInfo<User> userPageInfo = new PageInfo<>(list);
 
 
 

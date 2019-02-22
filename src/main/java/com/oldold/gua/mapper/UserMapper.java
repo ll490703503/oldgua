@@ -22,7 +22,7 @@ public interface UserMapper {
     int insert(User record);
 
     @Select({
-            "select id,name from user"
+            "select * from user"
     })
     List<User> getAll();
 
