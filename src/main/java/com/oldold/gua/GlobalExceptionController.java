@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @Description
+ * @Description Date转化String
  * @auther panwang1
  * @create 2019-02-22 15:08
  */
