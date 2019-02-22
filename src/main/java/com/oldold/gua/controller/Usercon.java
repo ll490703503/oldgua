@@ -57,6 +57,13 @@ public class Usercon {
         return userPageInfo;
     }
 
+    @GetMapping(value = "login")
+
+    public String login(){
+        
+        return "hahah";
+    }
+
 }
 
 

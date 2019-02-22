@@ -21,10 +21,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
             if ("XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
-                response.sendError(401);
-                System.out.println("hahha");
+            return false;
             }
-            response.sendRedirect("/");
             return false;
         }
         return true;
