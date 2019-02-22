@@ -1,6 +1,5 @@
 package com.oldold.gua.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.oldold.gua.domain.User;
 import com.oldold.gua.service.UserService;

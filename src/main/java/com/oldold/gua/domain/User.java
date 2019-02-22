@@ -12,9 +12,14 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 567634563196102957L;
 
-    public User(){};
-
-    public User(Integer id,String name){};
+    public User(Integer id, String name, String password, Date createtime) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.createtime = createtime;
+    }
+    public User(){
+    }
 
     private Integer id;
 
