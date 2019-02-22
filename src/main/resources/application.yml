@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    druid:
+
+      url: jdbc:mysql://127.0.0.1:3306/moxi?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: Shu1shu2
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+      initial-size: 1
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: select 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      use-global-data-source-stat: true
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
+logging:
+  level:
+    root: INFO
+
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: countSql
+  page-size-zero: zero
+server:
+  port: 80
+
