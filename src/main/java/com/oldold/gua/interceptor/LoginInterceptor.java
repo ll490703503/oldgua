@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (session.getAttribute("user") == null) {
             if ("XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With"))) {
                 response.sendError(401);
-
+                System.out.println("hahha");
             }
             response.sendRedirect("/");
             return false;
