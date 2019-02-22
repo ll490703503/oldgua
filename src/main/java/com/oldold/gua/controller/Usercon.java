@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 /**
@@ -28,24 +27,20 @@ public class Usercon {
 
     @PostMapping(value = "/add")
 
-    public int addUser(@RequestParam(value = "ID") int id, @RequestParam(value = "Name") String name, String password, Date creatime) {
+    public int addUser(@RequestParam int id, @RequestParam String name, String password, Date creatime) {
         User users = new User();
         users.setId(id);
         users.setPassword(password);
-        users.setCreatetime(new Date());
+        users.setCreatetime(creatime);
         users.setName(name);
-        String s = "hahaha";
-        int ids = userService.addUser(users);
-        double x = 9.98D;
-        String y = String.valueOf(x);
-        System.out.println(y);
-        return ids;
+        int idNum = userService.addUser(users);
+        return idNum;
 
 
     }
 
     @PostMapping(value = "Getalluser")
-    public PageInfo<com.oldold.gua.domain.User> getAllUser(@RequestParam(value = "pag") int page, int pagesize) {
+    public PageInfo<com.oldold.gua.domain.User> getAllUser(@RequestParam int page, int pagesize) {
         logger.info("saomiankaishi");
         List<com.oldold.gua.domain.User> list = new ArrayList<>();
         PageInfo<com.oldold.gua.domain.User> userPageInfo = userService.getAll(page, pagesize);

@@ -2,6 +2,7 @@ package com.oldold.gua.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.oldold.gua.domain.User;
 import com.oldold.gua.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,16 +25,13 @@ public class UserService {
     UserMapper userMapper;
 
     @Transactional
-    public int addUser(com.oldold.gua.domain.User user) {
-        com.oldold.gua.domain.User record = new com.oldold.gua.domain.User();
+    public int addUser(User user) {
+        User record = new User();
         record.setId(user.getId());
         record.setName(user.getName());
         record.setPassword(user.getPassword());
-        SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        record.setCreatetime(new Date());
+        record.setCreatetime(user.getCreatetime());
         int id = userMapper.insert(record);
-
-
         return id;
 
 
