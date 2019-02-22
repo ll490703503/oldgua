@@ -19,7 +19,7 @@ import java.util.Map;
  * @create 2019-02-14 14:47
  */
 @Service
-public class User {
+public class UserService {
     @Autowired
     UserMapper userMapper;
 
