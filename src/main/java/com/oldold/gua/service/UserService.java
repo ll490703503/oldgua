@@ -40,13 +40,13 @@ public class UserService {
 
 
 
-    public PageInfo<User> getAll(int page,int pagesize) {
+    public PageInfo<Map<String,Object>> getAll(int page,int pagesize) {
 
         PageHelper.startPage(page,pagesize);
 
-        List<User> list = userMapper.getAll();
+        List<Map<String,Object>> list = userMapper.getAll();
 
-        PageInfo<User> userPageInfo = new PageInfo<>(list);
+        PageInfo<Map<String,Object>> userPageInfo = new PageInfo<>(list);
 
 
 

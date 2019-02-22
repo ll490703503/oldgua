@@ -22,9 +22,9 @@ public interface UserMapper {
     int insert(User record);
 
     @Select({
-            "select * from user"
+            "select id,name from user"
     })
-    List<User> getAll();
+    List<Map<String,Object>> getAll();
 
     @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
     int insertSelective(User record);

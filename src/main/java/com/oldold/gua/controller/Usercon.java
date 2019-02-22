@@ -40,10 +40,10 @@ public class Usercon {
     }
 
     @PostMapping(value = "Getalluser")
-    public PageInfo<com.oldold.gua.domain.User> getAllUser(@RequestParam int page, int pagesize) {
+    public PageInfo<Map<String,Object>> getAllUser(@RequestParam int page, int pagesize) {
         logger.info("saomiankaishi");
         List<com.oldold.gua.domain.User> list = new ArrayList<>();
-        PageInfo<com.oldold.gua.domain.User> userPageInfo = userService.getAll(page, pagesize);
+        PageInfo<Map<String,Object>> userPageInfo = userService.getAll(page, pagesize);
         JSONObject js = new JSONObject();
         js.put("code", 100);
         js.put("success", true);
