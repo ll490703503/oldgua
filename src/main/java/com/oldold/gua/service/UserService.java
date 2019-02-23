@@ -35,7 +35,6 @@ public class UserService {
         int id = userMapper.insert(record);
         return id;
 
-
     }
 
 
