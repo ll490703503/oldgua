@@ -8,8 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Description
@@ -40,18 +39,25 @@ public class Usercon {
 
     }
 
+
     @PostMapping(value = "Getalluser")
     public PageInfo<Map<String,Object>> getAllUser(@RequestParam int page, int pagesize) {
         PageInfo<Map<String,Object>> userPageInfo = userService.getAll(page, pagesize);
+
         return userPageInfo;
     }
 
     @GetMapping(value = "login")
     public String login(){
+        List<String> a = new ArrayList<String>;
         return "hahah";
+        Map<String,String> map =new TreeMap<>();
+        map.put("hahaha","llll");
+
     }
 
 }
+
 
 
 
