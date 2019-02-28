@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: user_service
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/moxi?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false

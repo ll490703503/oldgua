@@ -28,4 +28,9 @@ public interface UserMapper {
 
     @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
     int insertSelective(User record);
+
+    @Select({
+            "select * from user where id = #{id}"
+    })
+    List<User> getUserList(Long id);
 }

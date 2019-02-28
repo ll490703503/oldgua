@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Description
@@ -47,8 +44,12 @@ public class UserService {
 
         PageInfo<Map<String,Object>> userPageInfo = new PageInfo<>(list);
 
-
-
         return userPageInfo;
+    }
+
+    public List<User> getUserList(Long id){
+        List<User> userList = new ArrayList<User>();
+        userList = userMapper.getUserList(id);
+        return  userList;
     }
 }

@@ -17,16 +17,20 @@ import java.util.*;
  */
 
 @RestController
-@RequestMapping(value = "/addUser")
+@RequestMapping(value = "/api")
 public class Usercon {
     protected Logger logger = LoggerFactory.getLogger(Usercon.class);
 
     @Autowired
     UserService userService;
 
+    @GetMapping(value = "/user/{id}")
+    public List<User> getUserList(@PathVariable("id") Long id){
+        return userService.getUserList(id);
+    }
+
 
     @PostMapping(value = "/add")
-
     public int addUser(@RequestParam int id, @RequestParam String name, String password, Date creatime) {
         User users = new User();
         users.setId(id);
@@ -40,19 +44,13 @@ public class Usercon {
     }
 
 
-    @PostMapping(value = "Getalluser")
+    @PostMapping(value = "/Getalluser")
     public PageInfo<Map<String,Object>> getAllUser(@RequestParam int page, int pagesize) {
         PageInfo<Map<String,Object>> userPageInfo = userService.getAll(page, pagesize);
 
         return userPageInfo;
     }
 
-    @GetMapping(value = "login")
-    public String login(){
-        return "hahah";
-
-
-    }
 
 }
 
