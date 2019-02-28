@@ -49,10 +49,8 @@ public class Usercon {
 
     @GetMapping(value = "login")
     public String login(){
-        List<String> a = new ArrayList<String>;
         return "hahah";
-        Map<String,String> map =new TreeMap<>();
-        map.put("hahaha","llll");
+
 
     }
 
