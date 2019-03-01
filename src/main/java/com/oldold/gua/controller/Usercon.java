@@ -31,9 +31,8 @@ public class Usercon {
 
 
     @PostMapping(value = "/add")
-    public int addUser(@RequestParam int id, @RequestParam String name, String password, Date creatime) {
+    public int addUser( @RequestParam String name, String password, Date creatime) {
         User users = new User();
-        users.setId(id);
         users.setPassword(password);
         users.setName(name);
         users.setCreatetime(creatime);

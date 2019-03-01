@@ -25,7 +25,6 @@ public class UserService {
     @Transactional
     public int addUser(User user) {
         User record = new User();
-        record.setId(user.getId());
         record.setName(user.getName());
         record.setPassword(user.getPassword());
         record.setCreatetime(user.getCreatetime());
@@ -35,14 +34,12 @@ public class UserService {
 
     }
 
-
     public PageInfo<Map<String, Object>> getAll(int page, int pagesize) {
         PageHelper.startPage(page, pagesize);
         List<Map<String, Object>> list = userMapper.getAll();
         PageInfo<Map<String, Object>> userPageInfo = new PageInfo<>(list);
         return userPageInfo;
     }
-
     public List<User> getUserList(Long id) {
         return userMapper.getUserList(id);
     }
