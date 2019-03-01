@@ -35,8 +35,8 @@ public class Usercon {
         User users = new User();
         users.setId(id);
         users.setPassword(password);
-        users.setCreatetime(creatime);
         users.setName(name);
+        users.setCreatetime(creatime);
         int idNum = userService.addUser(users);
         return idNum;
 
@@ -47,7 +47,6 @@ public class Usercon {
     @PostMapping(value = "/Getalluser")
     public PageInfo<Map<String,Object>> getAllUser(@RequestParam int page, int pagesize) {
         PageInfo<Map<String,Object>> userPageInfo = userService.getAll(page, pagesize);
-
         return userPageInfo;
     }
 

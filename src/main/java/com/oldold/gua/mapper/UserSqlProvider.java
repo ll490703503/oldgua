@@ -8,23 +8,23 @@ public class UserSqlProvider {
     public String insertSelective(User record) {
         SQL sql = new SQL();
         sql.INSERT_INTO("user");
-        
+
         if (record.getId() != null) {
             sql.VALUES("id", "#{id,jdbcType=INTEGER}");
         }
-        
+
         if (record.getName() != null) {
             sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
         }
-        
+
         if (record.getPassword() != null) {
             sql.VALUES("password", "#{password,jdbcType=VARCHAR}");
         }
-        
-        if (record.getCreatetime() != null) {
-            sql.VALUES("createtime", "#{createtime,jdbcType=TIMESTAMP}");
-        }
-        
+        sql.VALUES("createtime",(record.getCreatetime() !=null)?"#{createtime,jdbcType=TIMESTAMP}":"NOW()");
+
+
+        System.out.println(sql.toString());
+
         return sql.toString();
     }
 }
