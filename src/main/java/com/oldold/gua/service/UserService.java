@@ -35,21 +35,14 @@ public class UserService {
     }
 
 
-
-    public PageInfo<Map<String,Object>> getAll(int page,int pagesize) {
-
-        PageHelper.startPage(page,pagesize);
-
-        List<Map<String,Object>> list = userMapper.getAll();
-
-        PageInfo<Map<String,Object>> userPageInfo = new PageInfo<>(list);
-
+    public PageInfo<Map<String, Object>> getAll(int page, int pagesize) {
+        PageHelper.startPage(page, pagesize);
+        List<Map<String, Object>> list = userMapper.getAll();
+        PageInfo<Map<String, Object>> userPageInfo = new PageInfo<>(list);
         return userPageInfo;
     }
 
-    public List<User> getUserList(Long id){
-        List<User> userList = new ArrayList<User>();
-        userList = userMapper.getUserList(id);
-        return  userList;
+    public List<User> getUserList(Long id) {
+        return userMapper.getUserList(id);
     }
 }

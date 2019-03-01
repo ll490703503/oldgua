@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
