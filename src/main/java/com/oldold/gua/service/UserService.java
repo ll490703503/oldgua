@@ -28,7 +28,6 @@ public class UserService {
         record.setName(user.getName());
         record.setPassword(user.getPassword());
         record.setCreatetime(user.getCreatetime());
-        System.out.println(record);
         int id = userMapper.insertSelective(record);
         return id;
 
