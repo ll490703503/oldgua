@@ -30,6 +30,8 @@ public class WebLogAspect {
     @Pointcut(value = "execution(public * com.oldold.gua.controller..*.*(..))")
     public void webLog() {}
 
+
+
     @Before(value = " webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         // 开始打印请求日志
