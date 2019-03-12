@@ -3,11 +3,13 @@ package com.oldold.gua.controller;
 import com.github.pagehelper.PageInfo;
 import com.oldold.gua.domain.User;
 import com.oldold.gua.service.UserService;
+import com.oldold.gua.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -24,6 +26,9 @@ public class Usercon {
     @Autowired
     UserService userService;
 
+    @Resource
+    RedisUtil redisUtil;
+
     @GetMapping(value = "/user/{id}")
     public List<User> getUserList(@PathVariable("id") Long id){
         return userService.getUserList(id);
@@ -36,6 +41,7 @@ public class Usercon {
         users.setPassword(password);
         users.setName(name);
         users.setCreatetime(creatime);
+        redisUtil.set(name,users.toString());
         int idNum = userService.addUser(users);
         return idNum;
 
