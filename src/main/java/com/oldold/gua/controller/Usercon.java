@@ -1,5 +1,6 @@
 package com.oldold.gua.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.oldold.gua.domain.User;
 import com.oldold.gua.service.UserService;
@@ -41,11 +42,15 @@ public class Usercon {
         users.setPassword(password);
         users.setName(name);
         users.setCreatetime(creatime);
-        redisUtil.set(name,users.toString());
+        redisUtil.set(name,new JSONObject().toJSONString(users));
         int idNum = userService.addUser(users);
         return idNum;
 
+    }
 
+    @GetMapping(value = "/getcache")
+    public String getCache(String name){
+        return redisUtil.get(name);
     }
 
 
