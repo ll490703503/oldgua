@@ -1,6 +1,5 @@
 package com.oldold.gua.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.oldold.gua.domain.User;
 import com.oldold.gua.service.UserService;
@@ -11,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -31,36 +32,34 @@ public class Usercon {
     RedisUtil redisUtil;
 
     @GetMapping(value = "/user/{id}")
-    public List<User> getUserList(@PathVariable("id") Long id){
+    public List<User> getUserList(@PathVariable("id") Long id) {
         return userService.getUserList(id);
     }
 
 
     @PostMapping(value = "/add")
-    public int addUser( @RequestParam String name, String password, Date creatime) {
+    public int addUser(@RequestParam String name, String password, Date creatime) {
         User users = new User();
         users.setPassword(password);
         users.setName(name);
         users.setCreatetime(creatime);
-        redisUtil.set(name,new JSONObject().toJSONString(users));
+        redisUtil.set(name,users.toString());
         int idNum = userService.addUser(users);
         return idNum;
 
     }
 
     @GetMapping(value = "/getcache")
-    public String getCache(String name){
+    public String getCache(String name) {
         return redisUtil.get(name);
     }
 
 
     @PostMapping(value = "/Getalluser")
-    public PageInfo<Map<String,Object>> getAllUser(@RequestParam int page, int pagesize) {
-        PageInfo<Map<String,Object>> userPageInfo = userService.getAll(page, pagesize);
+    public PageInfo<Map<String, Object>> getAllUser(@RequestParam int page, int pagesize) {
+        PageInfo<Map<String, Object>> userPageInfo = userService.getAll(page, pagesize);
         return userPageInfo;
     }
-
-
 
 
 }
