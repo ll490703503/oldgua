@@ -22,6 +22,18 @@ spring:
       use-global-data-source-stat: true
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
+  redis:
+    host: 13.58.191.77
+    database: 0
+    password: hongmei
+    port: 6390
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 20
+        min-idle: 0
+        max-wait: 10000ms
+
 
 logging:
   level:
