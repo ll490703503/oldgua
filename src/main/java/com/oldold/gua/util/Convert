@@ -1,0 +1,95 @@
+@Component
+public class DateConverter implements Converter<String, Date> {
+  @Override
+  public Date convert(String source) {
+    if (StringUtils.isBlank(source)) {
+      return null;
+    }
+    if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}$")) {
+      return parseDate(source.trim(), "yyyy-MM-dd");
+    }
+    if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")) {
+      return parseDate(source.trim(), "yyyy-MM-dd HH:mm:ss");
+    }
+    throw new IllegalArgumentException("Invalid value '" + source + "'");
+  }
+
+  public Date parseDate(String dateStr, String format) {
+    Date date = null;
+    try {
+      date = new SimpleDateFormat(format).parse(dateStr);
+    } catch (ParseException e) {
+      log.warn("转换{}为日期(pattern={})错误！", dateStr, format);
+    }
+    return date;
+  }
+}
+
+
+
+/**
+ * 序列化,反序列化,格式处理
+ *
+ * @author zc
+ * @date 2020/7/9 01:42
+ */
+@Slf4j
+@Configuration
+public class JacksonCustomizerConfig {
+
+    @Value("${spring.jackson.date-format:yyyy-MM-dd HH:mm:ss}")
+    private String localDateTimePattern;
+
+    @Value("${spring.jackson.local-date-format:yyyy-MM-dd}")
+    private String localDatePattern;
+
+    @Value("${spring.jackson.local-time-format:HH:mm:ss}")
+    private String localTimePattern;
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+        return builder -> {
+            builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(localDateTimePattern)));
+            builder.serializerByType(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(localDatePattern)));
+            builder.serializerByType(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(localTimePattern)));
+            builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(localDateTimePattern)));
+            builder.deserializerByType(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(localDatePattern)));
+            builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(localTimePattern)));
+        };
+    }
+  
+  	/**
+     * 时间LocalDateTime转换
+     */
+    @Component
+    public static class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
+        @Override
+        public LocalDateTime convert(String source) {
+            if (StringUtils.isBlank(source)) {
+                return null;
+            }
+            if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")) {
+                return LocalDateTime.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }
+            throw new IllegalArgumentException("Invalid value '" + source + "'");
+        }
+    }
+
+    /**
+     * 时间LocalDate转换
+     */
+    @Component
+    public static class LocalDateConverter implements Converter<String, LocalDate> {
+        @Override
+        public LocalDate convert(String source) {
+            if (StringUtils.isBlank(source)) {
+                return null;
+            }
+            if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}$")) {
+                return LocalDate.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            }
+            throw new IllegalArgumentException("Invalid value '" + source + "'");
+        }
+    }
+  
+}
