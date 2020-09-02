@@ -55,6 +55,8 @@ public class JacksonCustomizerConfig {
             builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(localDateTimePattern)));
             builder.deserializerByType(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(localDatePattern)));
             builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(localTimePattern)));
+                        // 前端Long精度丢失，转化为String
+            builder.serializerByType(Long.class, ToStringSerializer.instance);
         };
     }
   
